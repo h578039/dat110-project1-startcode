@@ -10,6 +10,9 @@ public class Message {
 
 	public Message(byte[] payload) {
 		this.payload = payload; // TODO: check for length within boundary
+		if(payload.length>127) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
 	}
 
 	public Message() {
