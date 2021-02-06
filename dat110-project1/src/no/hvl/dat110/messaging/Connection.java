@@ -19,7 +19,7 @@ public class Connection {
 
 			this.socket = socket;
 
-			outStream = new DataOutputStream(socket.getOutputStream());
+			outStream = new DataOutputStream(socket.getOutputStream());   
 
 			inStream = new DataInputStream(socket.getInputStream());
 
@@ -35,32 +35,34 @@ public class Connection {
 		// TODO
 		// encapsulate the data contained in the message and write to the output stream
 		// Hint: use the encapsulate method on the message
-		throw new UnsupportedOperationException(TODO.method());
-
+		byte[]encoded = message.encapsulate();
+		try {
+			outStream.write(encoded);
+		} catch (IOException e) {
+		
+		}
 	}
 
 	public Message receive() {
 
-		Message message;
-		byte[] recvbuf;
+		Message message = new Message();
+		byte[] recvbuf = new byte[128];
 
 		// TODO
 		// read a segment (128 bytes) from the input stream and decapsulate into message
 		// Hint: create a new Message object and use the decapsulate method
-		
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		try {
+			inStream.read(recvbuf);
+		} catch (IOException e) {
 		}
-
+		message.decapsulate(recvbuf);
+		
 		return message;
-
 	}
 
 	// close the connection by closing streams and the underlying socket
 	public void close() {
-
 		try {
-
 			outStream.close();
 			inStream.close();
 
