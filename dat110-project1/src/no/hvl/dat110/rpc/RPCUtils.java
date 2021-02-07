@@ -1,5 +1,6 @@
 package no.hvl.dat110.rpc;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import no.hvl.dat110.TODO;
@@ -50,6 +51,7 @@ public class RPCUtils {
 	public static void unmarshallVoid(byte[] data) {
 
 		// TODO: unmarshall void type
+		return;
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -90,9 +92,11 @@ public class RPCUtils {
 		int decoded ;
 
 		// TODO: unmarshall integer contained in data
+		
 		Byte b = new Byte(data[1]);
-		decoded = b & 0xFF;
-
+        decoded = b & 0xFF; // for oppgave 1
+        //decoded = b; // for oppgave 3
+        
 		return decoded;
 
 	}
